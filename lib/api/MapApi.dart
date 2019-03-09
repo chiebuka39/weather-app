@@ -17,7 +17,7 @@ class MapApi {
     "&APPID=" + _apiKey + "&units=metric";
   }
 
-  getWeather({double lat, double lon}) async {
+  Future<WeatherData> getWeather({double lat, double lon}) async {
     var response = await client.get(
         Uri.encodeFull(_apiCall(lat: lat, lon: lon)),
         headers: {

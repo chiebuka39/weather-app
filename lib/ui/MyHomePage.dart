@@ -2,6 +2,7 @@ import 'package:chat/ui/Weather.dart';
 import 'package:flutter/material.dart';
 import 'package:chat/model/WeatherData.dart';
 import 'package:chat/api/MapApi.dart';
+import 'package:chat/api/LocationApi.dart';
 
 
 
@@ -44,8 +45,10 @@ class _MyHomePageState extends State<MyHomePage> {
       );
   }
 
-  getCurrentLocation(){
-    loadWeather(lat: 6.45407, lon: 3.39467);
+  getCurrentLocation() async{
+    LocationApi locationApi = LocationApi.getInstance();
+    final location =await locationApi.getLocation();
+    loadWeather(lat: location.lat, lon: location.lon);
   }
 
   loadWeather({double lat, double lon}) async {
